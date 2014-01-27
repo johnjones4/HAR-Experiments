@@ -16,7 +16,7 @@ import com.johnjones.harexperiments.model.Resource;
 public class HarAnalyzer {
 
 	public static void main(String[] args) {
-		if (args.length == 1) {
+		if (args.length == 2) {
 			try {
 				Har har = Har.parseFile(new File(args[0]));
 				Resource root = har.computeRequestTree();
@@ -28,7 +28,7 @@ public class HarAnalyzer {
 				
 				FileSinkImages pic = new FileSinkImages(OutputType.PNG, Resolutions.QSXGA);
 				pic.setLayoutPolicy(LayoutPolicy.COMPUTED_FULLY_AT_NEW_IMAGE);
-				pic.writeAll(graph, "/Users/johnjones/Desktop/test1.png");
+				pic.writeAll(graph, args[1]);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -52,7 +52,7 @@ public class HarAnalyzer {
 	}
 	
 	private static void usage() {
-		System.out.println("Need file to parse");
+		System.out.println("Need file to parse and output file path");
 		System.exit(1);
 	}
 
